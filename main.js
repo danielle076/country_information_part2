@@ -72,6 +72,68 @@
 // o Europe: geel
 // o Oceania: paars
 // Tip: gebruik de Color Picker extensie om erachter te komen welke kleuren er op de afbeelding staan.
+// // Aanroepen country-container in html
+// countryListContainer = document.getElementById("country-container");
+//
+// async function getCountries() {
+//     const result = await axios.get("https://restcountries.eu/rest/v2/all");
+//     // Data uit het result object halen
+//     const {data} = result;
+//     // Sorteer de landen in het object op population
+//     data.sort(function (a, b) {
+//         return a.population - b.population;
+//     });
+//
+// // Creëer html structuur en inhoud API array
+//     data.map(function ({region, flag, name}) {
+//         // Listitem met uniek id
+//         const li = document.createElement("li");
+//
+//         // Vlag toevoegen
+//         const flagImg = document.createElement("img");
+//         flagImg.setAttribute("src", flag);
+//         flagImg.setAttribute("class", "flag");
+//
+//         // Naam land toevoegen
+//         const nameCountry = document.createElement("name-country");
+//         nameCountry.setAttribute("class", "country");
+//         nameCountry.setAttribute("class", `${colorRegion(region)}`);
+//         nameCountry.textContent = name;
+//
+//         // Vlag en land toevoegen aan listitem
+//         li.appendChild(flagImg);
+//         li.appendChild(nameCountry);
+//
+//         // Listitem toevoegen aan html
+//         countryListContainer.appendChild(li);
+//     })
+// }
+//
+// // Functie wordt voor elk land aangeroepen en krijgt de region mee. Op basis hiervan voert de switch zijn
+// // vergelijking uit en geeft de naam van de class mee die wij op het element zetten
+// function colorRegion(region) {
+//     switch (region) {
+//         case "Africa":
+//             return "blue";
+//         case "Americas":
+//             return "green";
+//         case "Asia" :
+//             return "red";
+//         case "Europe":
+//             return "yellow";
+//         case "Oceania":
+//             return "purple";
+//         default:
+//             return "black";
+//     }
+// }
+//
+// // Aanroepen functie getCountries
+// getCountries();
+
+// 6. Zet een event listener op elk land, zodat als de gebruiker op dat land klikt, de populatie eronder tevoorschijn
+// komt. Zorg er ook voor dat als de gebruiker op een land klikt waarbij deze informatie al zichtbaar is, de informatie
+// weer verdwijnt. Tip: je hebt een unieke ID nodig voor elk tekst-element met populatie-informatie
 // Aanroepen country-container in html
 countryListContainer = document.getElementById("country-container");
 
@@ -85,7 +147,7 @@ async function getCountries() {
     });
 
 // Creëer html structuur en inhoud API array
-    data.map(function ({region, flag, name}) {
+    data.map(function ({region, flag, name, population}) {
         // Listitem met uniek id
         const li = document.createElement("li");
 
@@ -106,6 +168,24 @@ async function getCountries() {
 
         // Listitem toevoegen aan html
         countryListContainer.appendChild(li);
+
+        // Population toevoegen of verwijderen met click
+        const populationInfo = document.createElement("p");
+        populationInfo.setAttribute("class", "population-class");
+
+        // Default staat dde population niet aan
+        let populationActive = false
+
+        li.addEventListener("click", function (e) {
+            if (populationActive) {
+                li.removeChild(populationInfo);
+                populationActive = false;
+            } else {
+                populationInfo.textContent = `Population: ${(population / 1000000).toFixed(1)} million`;
+                li.appendChild(populationInfo);
+                populationActive = true;
+            }
+        })
     })
 }
 
