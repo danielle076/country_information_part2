@@ -61,3 +61,5 @@ async function getCountries() {
 
 // Aanroepen functie getCountries
 getCountries();
+
+// 4. Plaats de landkaart world_map.png (te vinden in de assets map) bovenaan de pagina.
