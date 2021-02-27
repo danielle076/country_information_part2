@@ -1,3 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
+
 body {
-    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Akaya Telivigala', cursive;
+}
+
+#country-container {
+    list-style-type: none;
+    column-count: 3;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    background-color: hsl(0, 0%, 98%);
+    padding: 20px;
+}
+
+#image {
+    width: 80%;
+
+}
+
+.flag {
+    width: 20px;
+}
+
+.blue {
+    color: hsl(222, 47%, 55%);
+}
+
+.green {
+    color: hsl(139, 43%, 59%);
+}
+
+.red {
+    color: hsl(354, 59%, 56%);
+}
+
+.yellow {
+    color: hsl(47, 100%, 60%);
+}
+
+.purple {
+    color: hsl(288, 43%, 53%);
+}
+
+.black {
+    color: hsl(0, 0%, 0%);
 }
